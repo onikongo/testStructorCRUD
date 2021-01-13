@@ -1,0 +1,117 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "My Book Project CRUD",
+      "description": "My Book Project Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Books",
+        "description": "API for Books in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/api/v1/book": {
+        "post": {
+          "tags": [
+            "Books"
+          ],
+          "description": "Create new user in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Book that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New user is created",
+              "schema": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          }
+        } 
+      },
+      "/api/v1/books": {
+        "get": {
+            "tags": [
+              "Books"
+            ],
+            "summary": "Get all Books in system",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/Books"
+                }
+              }
+            }
+          }
+      }
+    },
+    "definitions": {
+      "Book": {
+        "required": [
+          "name",
+          "_id",
+          "companies"
+        ],
+        "properties": {
+          "_id": {
+            "type": "integer",
+            "uniqueItems": true
+          },
+          "isPublic": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "books": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  }
+                }
+            }
+                
+          }
+         
+        }
+      },
+      "Books": {
+        "type": "array",
+        "$ref": "#/definitions/Book"
+      }
+     
+    }
+  }
+
+  
